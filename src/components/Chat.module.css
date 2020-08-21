@@ -2,28 +2,79 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: chocolate;
+    background-color: #dadada;
     height:100%;
     width: calc(100% - 160px);
 }
+
+.chatLogWrapper{
+    height: 93%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.chatLog{
+    height: 100%;
+    background-color: #dadada;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.greetings{
+    height: 5%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #505050;
+    padding: 15px;
+}
+
+.messageWrapper{
+    display: flex;
+    background-color: crimson;
+    border-radius: 3px;
+    margin: 15px;
+    padding: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
+.message{
+    word-wrap: break-word;
+}
+
+.messageNickname{
+    display: flex;
+    font-weight: 700;
+    margin-right: 15px;
+}
+
 .formWrapper{
     display: flex;
     height: 7%;
     width: 100%;
 }
+
 .inputForm {
     height: 100%;
     width: 100%;
 }
+
 .inputForm input{
     height: 100%;
-    width: 85%;
+    width: calc(85% - 2px);
     border: none;
     outline: none;
     padding: 20px;
     font-size: 20px;
+    margin-right: 2px;
+    background-color: #ececec;
 }
 .inputForm button{
+    background-color: #ececec;
+    color: #035468;
     height: 100%;
     width: 15%;
     cursor: pointer;
@@ -31,4 +82,9 @@
     outline: none;
     font-size: 20px;
     padding: 0;
+}
+.inputForm button:hover{
+    background-color: #858585;
+    color: #ffffff;
+    transition: .3s;
 }

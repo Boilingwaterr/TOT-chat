@@ -1,0 +1,73 @@
+.authWrapper{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #6bb882;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nicknameAuth{
+    font-weight: 600;
+    font-size: 20px;
+    color: #383333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 90px;
+    width: 500px;
+}
+
+.nicknameAuth input{
+    border: none;
+    outline: none;
+    background-color: #dbdbdb;
+    height: 30px;
+    font-size: 16px;
+    padding: 5px;
+    width: 200px;
+}
+
+.btn{
+    width: 200px;
+    border: none;
+    outline: none;
+    background-color: #dbdbdb;
+    height: 30px;
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    transition: .3s;
+    background-color: #888888;
+    color: #f3f3f3;
+}
+
+.colorsetter{
+    font-weight: 600;
+    font-size: 20px;
+    color: #383333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 500px;
+}
+
+.colorbox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.box{
+    margin: 15px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}

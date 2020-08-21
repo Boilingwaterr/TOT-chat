@@ -23,4 +23,11 @@
   /* justify-content: center; */
 }
 
+.categories span{
+  cursor: pointer;
+  margin-right: 20px;
+}
+.categories span :active{
+  background-color: cornflowerblue;
+}
 
