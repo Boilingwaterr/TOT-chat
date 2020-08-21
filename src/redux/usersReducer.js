@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const SET_USERS = "usersReducer/SET_USERS";
 
 const initialState = {
@@ -8,15 +10,24 @@ const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS:
 
-            return;
+            return {
+                ...state, users: [...action.users]
+            };
 
         default:
             return state;
     }
 }
 
-export const setUsersActionCreator = users => {
+const setUsers = users => {
     return { type: SET_USERS, users };
 }
 
+//thunk
+export const getUsersThunk = () => {
+    return async dispatch => {
+        let data = await usersAPI.getUsers();
+        dispatch(setUsers(data.results));
+    }
+}
 export default userReducer;

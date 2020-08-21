@@ -1,0 +1,40 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    background-color: bisque;
+    justify-content: flex-start;
+    height: 100%;
+    width: 200px;
+    margin: 0;
+}
+
+.online{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: 600;
+    color: #3b3b3b;
+}
+
+.user{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #b8ccf1;
+    cursor: pointer;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 5px;
+    border-radius: 3px;
+    word-wrap: break-word;
+    height: 30px;
+}
+
+.user:hover{
+    background-color: #7596d3;
+    transition: .3s;
+    color: #f3f3f3;
+}
