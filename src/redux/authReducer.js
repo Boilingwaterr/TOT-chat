@@ -73,4 +73,12 @@ export const getAuthorization = () => {
     }
 }
 
+export const logoutThunk = () => {
+    return async (dispatch) => {
+        await authAPI.logout();
+        dispatch(getAuth(false))
+
+    }
+}
+
 export default authReducer;

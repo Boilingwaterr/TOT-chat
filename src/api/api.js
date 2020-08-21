@@ -20,6 +20,11 @@ export const authAPI = {
             return false
         }
         return { res, auth: true };
+    },
+
+    logout: async () => {
+        const res = await localStorage.removeItem('TOT-chat-auth');
+        return res;
     }
 
 }

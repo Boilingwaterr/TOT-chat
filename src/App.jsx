@@ -6,13 +6,13 @@ import { getUsersThunk } from './redux/usersReducer';
 import Chat from './components/Chat';
 import { sendFloodMessage, sendWorkMessage, setTarget } from './redux/chatReducer';
 import Auth from './components/Auth';
-import { setAuthorization, getAuthorization } from './redux/authReducer';
+import { setAuthorization, getAuthorization, logoutThunk } from './redux/authReducer';
 
 const App = props => {
 
   const [chatType, setchatType] = useState('work');
   const {
-    getUsersThunk, auth, getAuthorization, setTarget
+    getUsersThunk, auth, getAuthorization, setTarget, logoutThunk
   } = props;
 
   useEffect(() => {
@@ -52,7 +52,15 @@ const App = props => {
               }}
             >
               Флудилка
-              </span>
+            </span>
+            <span
+              onClick={() => {
+                logoutThunk()
+              }}
+              className="logout"
+            >
+              log out
+            </span>
           </div>
         </div>
         <div className="body">
@@ -65,6 +73,7 @@ const App = props => {
             sendFloodMessage={props.sendFloodMessage}
           />
         </div>
+
       </div>
     );
   }
@@ -86,5 +95,6 @@ export default connect(mapStateToProps, {
   sendFloodMessage,
   setAuthorization,
   getAuthorization,
-  setTarget
+  setTarget,
+  logoutThunk
 })(App);
