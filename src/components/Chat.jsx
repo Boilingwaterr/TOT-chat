@@ -6,17 +6,21 @@ const Chat = props => {
 
   const [greetings, setGreetings] = useState(true);
 
-  const { chat, type } = props;
+  const { chat, type, auth } = props;
 
   useEffect(() => {
     setTimeout(() => setGreetings(false), 6000);
   }, [])
 
-  console.log(type);
-
   const workChatLog = chat.workChat.map((i, indx) => {
-    return <div className={Style.messageWrapper} key={indx}>
-      <div className={Style.messageNickname}>
+    return <div
+      className={Style.messageWrapper}
+      key={indx}
+    >
+      <div
+        style={{ color: i.color }}
+        className={Style.messageNickname}
+      >
         {i.nickname}:
       </div>
       <div className={Style.message}>
@@ -28,7 +32,10 @@ const Chat = props => {
 
   const floodChatLog = chat.floodChat.map((i, indx) => {
     return <div className={Style.messageWrapper} key={indx}>
-      <div className={Style.messageNickname}>
+      <div
+        style={{ color: i.color }}
+        className={Style.messageNickname}
+      >
         {i.nickname}:
     </div>
       <div className={Style.message}>
@@ -48,6 +55,8 @@ const Chat = props => {
       </div>
       <div className={Style.formWrapper}>
         <Input
+          target={chat.target}
+          auth={auth}
           type={type}
           sendWorkMessage={props.sendWorkMessage}
           sendFloodMessage={props.sendFloodMessage}

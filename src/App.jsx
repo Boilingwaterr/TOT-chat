@@ -4,24 +4,28 @@ import UserList from './components/UserList';
 import { connect } from 'react-redux';
 import { getUsersThunk } from './redux/usersReducer';
 import Chat from './components/Chat';
-import { sendFloodMessage, sendWorkMessage } from './redux/chatReducer';
+import { sendFloodMessage, sendWorkMessage, setTarget } from './redux/chatReducer';
 import Auth from './components/Auth';
 import { setAuthorization, getAuthorization } from './redux/authReducer';
 
 const App = props => {
 
   const [chatType, setchatType] = useState('work');
-
-  const { getUsersThunk, auth, getAuthorization } = props;
+  const {
+    getUsersThunk, auth, getAuthorization, setTarget
+  } = props;
 
   useEffect(() => {
     !auth.isAuth && getAuthorization()
   }, [getAuthorization, auth.isAuth]);
 
   useEffect(() => {
-    console.log('req')
     auth.isAuth && getUsersThunk();
   }, [getUsersThunk, auth.isAuth, chatType]);
+
+  const active = {
+    backgroundColor: '#e7af69'
+  }
 
   if (!auth.isAuth) {
     return <Auth auth={auth} setAuthorization={props.setAuthorization} />
@@ -33,14 +37,29 @@ const App = props => {
             <h1>logo</h1>
           </div>
           <div className="categories">
-            <span onClick={() => setchatType('work')}>Работа</span>
-            <span onClick={() => setchatType('flood')}>Флудилка</span>
+            <span
+              style={(chatType === 'work') ? active : undefined}
+              onClick={() => {
+                setchatType('work')
+              }}
+            >
+              Работа
+            </span>
+            <span
+              style={(chatType === 'flood') ? active : undefined}
+              onClick={() => {
+                setchatType('flood')
+              }}
+            >
+              Флудилка
+              </span>
           </div>
         </div>
         <div className="body">
-          <UserList users={props.users} />
+          <UserList users={props.users} setTarget={setTarget} />
           <Chat
             chat={props.chat}
+            auth={auth}
             type={chatType}
             sendWorkMessage={props.sendWorkMessage}
             sendFloodMessage={props.sendFloodMessage}
@@ -54,6 +73,7 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
+
     users: state.usersReducer.users,
     chat: state.chatReducer,
     auth: state.authReducer
@@ -65,5 +85,6 @@ export default connect(mapStateToProps, {
   sendWorkMessage,
   sendFloodMessage,
   setAuthorization,
-  getAuthorization
+  getAuthorization,
+  setTarget
 })(App);

@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Style from './Chat.module.css';
 
-const Input = ({ type, sendWorkMessage, sendFloodMessage }) => {
-  console.log('input render', type)
+const Input = ({ type, sendWorkMessage, sendFloodMessage, auth, target }) => {
+
   const [text, setText] = useState('');
+
+  useEffect(() => {
+    target && setText(target)
+  }, [target])
 
   const changeText = char => setText(char);
 
   const sendMessage = msg => {
     if (type === 'work') {
-      sendWorkMessage(msg);
+      sendWorkMessage(msg, auth.myNick, auth.myColor);
       setText('')
     } else if (type === 'flood') {
-      sendFloodMessage(msg);
+      sendFloodMessage(msg, auth.myNick, auth.myColor);
       setText('');
     }
   }

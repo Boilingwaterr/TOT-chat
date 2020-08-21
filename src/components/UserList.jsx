@@ -1,10 +1,14 @@
 import React from 'react';
 import Style from './UserList.module.css'
 
-const UserList = ({ users }) => {
-
+const UserList = ({ users, setTarget }) => {
   const userList = users.map((i, indx) => {
-    return <div key={indx} className={Style.user}>
+    return <div
+      onClick={() => setTarget(i.login.username)}
+      key={indx}
+      className={Style.user}
+    >
+      <img src={i.picture.thumbnail} alt="#" />
       {i.login.username}
     </div>
   })
