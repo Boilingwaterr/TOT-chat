@@ -1,11 +1,13 @@
 const SEND_WORK = 'chatReducer/SEND_WORK';
 const SEND_FLOOD = 'chatReducer/SEND_FLOOD';
 const TARGET = 'chatReducer/TARGET';
+const DELETE = 'chatReducer/DELETE';
+const EDIT = 'chatReducer/EDIT';
 
 const initialState = {
     workChat: [
         { nickname: "Artem", message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus pretium quam vulputate dignissim suspendisse in est. Aliquet nec ullamcorper sit amet risus. Vel eros donec ac odio', color: '#A12312' },
-        { nickname: "Nick", message: 'empor orci dapibus. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Massa id neque aliquam vestibulum morbi blandit cursus. In est ante in nibh', color: '#4CBB17' },
+        { nickname: "named", message: 'empor orci dapibus. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Massa id neque aliquam vestibulum morbi blandit cursus. In est ante in nibh', color: '#4CBB17' },
         { nickname: "Baron1212", message: 'molestie. Dictumst quisque sagittis purus sit amet volutpat.', color: '#9EE788' },
         { nickname: "AWF", message: 'met consectetu', color: '#F594B9' }
     ],
@@ -51,12 +53,61 @@ const chatReducer = (state = initialState, action) => {
                 ...state, target: `@${action.target}`
             }
 
+        case DELETE:
+
+            if (action.chatType === 'work') {
+                const newWorkChat = state.workChat.splice(action.target, 1);
+                return {
+                    ...state, newWorkChat
+                };
+            } else if (action.chatType === 'flood') {
+                const newFloodChat = state.floodChat.splice(action.target, 1);
+                return {
+                    ...state, newFloodChat
+                };
+            }
+            return state;
+
+        case EDIT:
+
+            if (action.chatType === 'work') {
+                const message = {
+                    nickname: action.myNick, message: action.msg, color: action.myColor
+                }
+                const msg = state.workChat.splice(action.target, 1, message)
+                return {
+                    ...state, msg
+                }
+            } else if (action.chatType === 'flood') {
+                const message = {
+                    nickname: action.myNick, message: action.msg, color: action.myColor
+                }
+                const msg = state.floodChat.splice(action.target, 1, message)
+                return {
+                    ...state, msg
+                }
+            }
+            return state;
+
         default:
             return state;
     }
 }
 
-export const setTarget = (target) => {
+export const editMessage = (target, chatType, msg, myNick, myColor) => {
+    return {
+        type: EDIT, target, chatType, msg, myNick, myColor
+    }
+}
+
+export const deleteMessage = (target, chatType) => {
+
+    return {
+        type: DELETE, target, chatType
+    }
+}
+
+export const setTarget = target => {
     return {
         type: TARGET, target
     }

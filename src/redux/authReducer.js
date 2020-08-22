@@ -6,7 +6,7 @@ const GET_AUTH = 'authReducer/GET_AUTH';
 const initialState = {
     isAuth: false,
     myNick: null,
-    myColor: '#grey',
+    myColor: null,
     colors: [
         '#4CBB17',
         '#9EE788',
@@ -56,7 +56,6 @@ export const getAuth = boolean => {
 export const setAuthorization = (data) => {
     return async (dispatch) => {
         let res = await authAPI.authorization(data)
-        console.log(res)
         dispatch(setAuth(res))
     }
 }
@@ -76,8 +75,7 @@ export const getAuthorization = () => {
 export const logoutThunk = () => {
     return async (dispatch) => {
         await authAPI.logout();
-        dispatch(getAuth(false))
-
+        dispatch(getAuth(false));
     }
 }
 

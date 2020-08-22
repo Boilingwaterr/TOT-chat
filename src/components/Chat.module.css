@@ -35,22 +35,64 @@
     border-radius: 3px;
     margin: 15px;
     padding: 5px;
+    min-height: 40px;
     font-weight: 500;
     font-size: 16px;
     word-wrap: break-word;
     border-bottom: solid 1px #c4c4c4;
+    align-items: center;
+    position: relative;
 }
 
 .message{
+    display: flex;
     word-wrap: break-word;
+    position: relative;
+    width: 100%;
 }
 
 .messageNickname{
     display: flex;
     font-weight: 800;
     margin-right: 15px;
+    position: relative;
+}
+.editMode{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    align-items: center;
+    left: calc(100% - 150px);
+    top: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.editMode div{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin-right: 1px;
+    justify-content: center;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #afafaf;
+    left: 100%;
+    top: 90%;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.delete:hover{
+    background-color: #b66868;
+    transition: .3s;
+    color:#f3f3f3;
 }
 
+.edit:hover{
+    background-color: #65db88;
+    transition: .3s;
+    color:#f3f3f3;
+}
 .formWrapper{
     display: flex;
     height: 7%;
@@ -64,6 +106,7 @@
 
 .inputForm input{
     height: 100%;
+    min-height: 40px;
     width: calc(85% - 2px);
     border: none;
     outline: none;
@@ -76,6 +119,7 @@
     background-color: #ececec;
     color: #035468;
     height: 100%;
+    min-height: 40px;
     width: 15%;
     cursor: pointer;
     border: none;
@@ -87,4 +131,14 @@
     background-color: #858585;
     color: #ffffff;
     transition: .3s;
+}
+.editModal{
+    display: flex;
+    position: absolute;
+    width: calc(100% + 5px);
+    height: 100%;
+    top: -9px;
+    left: 0;
+    justify-content: center;
+    align-items: center;
 }

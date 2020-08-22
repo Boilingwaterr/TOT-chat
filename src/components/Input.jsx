@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Style from './Chat.module.css';
 
-const Input = ({ type, sendWorkMessage, sendFloodMessage, auth, target }) => {
-
+const Input = ({ target, submit, placeholder }) => {
   const [text, setText] = useState('');
-
   useEffect(() => {
     target && setText(target)
-  }, [target])
+  }, [target, setText])
 
   const changeText = char => setText(char);
 
-  const sendMessage = msg => {
-    if (type === 'work') {
-      sendWorkMessage(msg, auth.myNick, auth.myColor);
-      setText('')
-    } else if (type === 'flood') {
-      sendFloodMessage(msg, auth.myNick, auth.myColor);
-      setText('');
-    }
-  }
   const submitOnEnter = (e, msg) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      sendMessage(msg);
+      submit(msg);
       setText('');
     }
   }
+
   return (
     <form className={Style.inputForm}>
       <input
@@ -34,12 +24,14 @@ const Input = ({ type, sendWorkMessage, sendFloodMessage, auth, target }) => {
         value={text}
         onChange={e => changeText(e.target.value)}
         onKeyPress={e => submitOnEnter(e, text)}
+        placeholder={placeholder}
       />
       <button
         type='button'
         className={Style.submit}
         onClick={(e) => {
-          sendMessage(text);
+          submit(text);
+          setText('')
         }}
       >submit</button>
     </form>

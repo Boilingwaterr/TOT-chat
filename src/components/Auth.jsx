@@ -4,7 +4,7 @@ import Style from './Auth.module.css'
 const Auth = props => {
 
     const [nickname, setNickname] = useState('unnamed')
-    const [color, setColor] = useState('#ffffff');
+    const [color, setColor] = useState('#F594B9');
 
     const { auth, setAuthorization } = props;
 

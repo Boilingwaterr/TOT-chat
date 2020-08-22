@@ -4,7 +4,7 @@ import UserList from './components/UserList';
 import { connect } from 'react-redux';
 import { getUsersThunk } from './redux/usersReducer';
 import Chat from './components/Chat';
-import { sendFloodMessage, sendWorkMessage, setTarget } from './redux/chatReducer';
+import { sendFloodMessage, sendWorkMessage, setTarget, deleteMessage, editMessage } from './redux/chatReducer';
 import Auth from './components/Auth';
 import { setAuthorization, getAuthorization, logoutThunk } from './redux/authReducer';
 
@@ -71,6 +71,8 @@ const App = props => {
             type={chatType}
             sendWorkMessage={props.sendWorkMessage}
             sendFloodMessage={props.sendFloodMessage}
+            deleteMessage={props.deleteMessage}
+            editMessage={props.editMessage}
           />
         </div>
 
@@ -96,5 +98,7 @@ export default connect(mapStateToProps, {
   setAuthorization,
   getAuthorization,
   setTarget,
-  logoutThunk
+  logoutThunk,
+  deleteMessage,
+  editMessage
 })(App);
